@@ -1,0 +1,44 @@
+<link rel="stylesheet"  href="/css/styles.css" />
+<link rel="stylesheet" href="/assets/fonts/fonts.css"/>
+<link rel="icon" href="/assets/icons/favicon.ico" type="image/ico">
+
+<title>To do list</title>
+
+<body>
+  <div id="bloco_principal">
+  <h1>Todo list</h1>
+
+  <form id="creation-form" action="/tarefas/adicionar" method="post">
+
+    <input type='text' placeholder="Escreva a tarefa" id="creation-input" autocomplete="off" >
+      <button type="submit" id="create-button">
+          <img src="/assets/icons/criar.svg">
+      </button> 
+  
+  </form>
+
+<br>
+
+<div id="container-lista">
+  {{#each listaDeTarefas}}
+    <ul class='tarefa-content' data-id="{{id}}">
+
+        <li class="tarefa" data-id="{{id}}">{{ Tarefa }}</li>
+
+        <div class= 'tarefa-buttons'>
+          <button onclick="editarTarefa('{{id}}')"  class="edit-button" id="edit-Btn" >
+              <img src="/assets/icons/editar.svg">
+          </button>
+
+          <button onclick="excluirTarefa('{{id}}')"  class="delete-button" id="delete-Btn">
+              <img src="/assets/icons/lixeira.svg">
+          </button>
+        </div>
+
+    </ul>
+  {{/each}} 
+    </div>
+
+</div>
+
+</body>
