@@ -1,0 +1,72 @@
+body {
+   background-color: #6DD5FA;
+    font-family: 'Arial';
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+    #bloco_principal {
+        width: 500px;
+        height: fit-content;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px;
+        align-items: center;
+        box-shadow: 0 10px 15px -5px black;
+    }
+    h1 {
+        text-align: left;
+        font-size: 32px;
+    }
+
+    #creation-form {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 24px;
+    }
+    #creation-input {       
+        flex-grow: 1;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #5AC8FA;
+        text-align: center;
+    }
+    #create-button {
+        background-color: #5AC8FA;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+
+    #container-lista {
+        display: flex;
+        flex-direction: column;
+    }
+
+    ul, .tarefa-content {
+        list-style-type: none;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 5px;
+        gap: 5px;
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+    }
+    li ,.tarefa {
+        font-size: 20px;
+        margin: 0;
+        text-align: left;
+        flex-grow: 1;
+    }
+    .edit-button, .delete-button {
+        float: left;
+        display: flex;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
