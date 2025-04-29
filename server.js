@@ -34,7 +34,7 @@ app.get("/login", (req, res) => {
     res.render("login", { layout : "main"});
 });
 
-app.get("/ToDo-list", (req, res) => {
+app.get("/tasklist", (req, res) => {
     res.render("taskList", { layout : "main" });
 });
 
