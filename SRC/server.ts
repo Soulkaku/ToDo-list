@@ -29,10 +29,10 @@ app.listen(PORT, () => {
     console.log("SERVER IS ON");
 });
 
-app.get('/tasklist', (req: Request, res: Response) => {
+app.get('/todolist', (req: Request, res: Response) => {
     res.render("taskList", {layout: "main"});
 });
 
 app.get('/', (req: Request, res: Response) => {
-    res.redirect('/tasklist');
+    res.redirect('/todolist');
 });
