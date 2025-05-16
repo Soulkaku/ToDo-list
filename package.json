@@ -1,13 +1,16 @@
 {
   "devDependencies": {
+    "@types/express": "^5.0.1",
     "typescript": "^5.8.3"
   },
   "name": "lista-de-tarefas",
   "version": "1.0.0",
   "description": "Projeto para apredizado para compreensão do uso do typeScript para criação do back End",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.8",
+    "nodemon": "^3.1.10"
   }
 }
