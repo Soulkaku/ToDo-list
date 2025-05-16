@@ -20,9 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.listen(PORT, () => {
     console.log("SERVER IS ON");
 });
-app.get('/tasklist', (req, res) => {
+app.get('/todolist', (req, res) => {
     res.render("taskList", { layout: "main" });
 });
 app.get('/', (req, res) => {
-    res.redirect('/tasklist');
+    res.redirect('/todolist');
 });
