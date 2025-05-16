@@ -9,18 +9,16 @@ const __dirname = path.join(path.dirname(__filename), "../");
 app.set("view engine", "hbs");
 app.engine('hbs', exphbs.engine({
     layoutsDir: path.join(__dirname, "SRC/Views/Layouts"),
-    defaultLayout: "main",
-    extname: "hbs"
+    extname: "hbs",
+    defaultLayout: "main"
 }));
-app.set("views", path.join(`../${__dirname}/SRC/Views`));
+app.set("views", path.join(`${__dirname}/SRC/Views`));
 app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
 //routes(app);
 app.use(express.urlencoded({ extended: true }));
 app.listen(PORT, () => {
     console.log("SERVER IS ON");
-    console.log(__dirname);
-    console.log(__filename);
 });
 app.get('/tasklist', (req, res) => {
     res.render("taskList", { layout: "main" });

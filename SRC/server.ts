@@ -13,10 +13,10 @@ const __dirname = path.join(path.dirname(__filename), "../");
 app.set("view engine", "hbs")
 app.engine('hbs', exphbs.engine({
     layoutsDir: path.join(__dirname, "SRC/Views/Layouts"),
-    defaultLayout: "main",
-    extname: "hbs"
+    extname: "hbs",
+    defaultLayout: "main"
 }));
-app.set("views", path.join(`../${__dirname}/SRC/Views`));
+app.set("views", path.join(`${__dirname}/SRC/Views`));
 
 app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
