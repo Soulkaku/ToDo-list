@@ -1,20 +1,27 @@
-import express from 'express';
+import express, { request, Request, response, Response } from 'express';
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
-import { create } from 'express-handlebars';
-
+import exphbs from 'express-handlebars'
 const app = express();
 const PORT : number = 3000;
 
+
 const __filename : string = fileURLToPath(import.meta.url);
-const __dirname : string = path.dirname(__filename);
+const __dirname = path.join(path.dirname(__filename), "../");
 
 
-const hbs = create({
-    layoutsDir: `${__dirname}/SRC/Views/Layouts`,
-    extname: 'hbs',
-    defaultLayout: "main"
-});
+app.set("view engine", "hbs")
+app.engine('hbs', exphbs.engine({
+    layoutsDir: path.join(__dirname, "SRC/Views/Layouts"),
+    defaultLayout: "main",
+    extname: "hbs"
+}));
+app.set("views", path.join(`../${__dirname}/SRC/Views`));
+
+app.use(express.static(path.join(`${__dirname}/Public`)));
+app.use(express.json());
+
+//routes(app);
 
 app.use(express.urlencoded({ extended: true}));
 
@@ -22,3 +29,10 @@ app.listen(PORT, () => {
     console.log("SERVER IS ON");
 });
 
+app.get('/tasklist', (req: Request, res: Response) => {
+    res.render("taskList", {layout: "main"});
+});
+
+app.get('/', (req: Request, res: Response) => {
+    res.redirect('/tasklist');
+});
