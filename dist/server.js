@@ -2,6 +2,9 @@ import express from 'express';
 import path from "path";
 import { fileURLToPath } from 'url';
 import exphbs from 'express-handlebars';
+import dotenv from 'dotenv';
+import { DbConnection } from './config/DbConnection.js';
+dotenv.config();
 const app = express();
 const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
@@ -16,6 +19,7 @@ app.set("views", path.join(`${__dirname}/SRC/Views`));
 app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
 //routes(app);
+DbConnection();
 app.use(express.urlencoded({ extended: true }));
 app.listen(PORT, () => {
     console.log("SERVER IS ON");
