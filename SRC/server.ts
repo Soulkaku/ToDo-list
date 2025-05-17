@@ -1,14 +1,18 @@
-import express, { request, Request, response, Response } from 'express';
+import express, { Request, Response } from 'express';
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
 import exphbs from 'express-handlebars'
+import dotenv from 'dotenv';
+import { DbConnection } from './config/DbConnection';
+
+dotenv.config();
+
 const app = express();
 const PORT : number = 3000;
 
 
 const __filename : string = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "../");
-
 
 app.set("view engine", "hbs")
 app.engine('hbs', exphbs.engine({
@@ -22,6 +26,9 @@ app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
 
 //routes(app);
+
+DbConnection();
+
 
 app.use(express.urlencoded({ extended: true}));
 
