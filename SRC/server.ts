@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 const PORT : number = 3000;
-
+const connectWithDb = DbConnection();
 
 const __filename : string = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "../");
@@ -27,7 +27,7 @@ app.use(express.json());
 
 //routes(app);
 
-DbConnection();
+connectWithDb;
 
 
 app.use(express.urlencoded({ extended: true}));
