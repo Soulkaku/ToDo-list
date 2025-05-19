@@ -4,7 +4,6 @@ export async function DbConnection() {
         const URI = process.env.DB_CONNECTION_STRING;
         await mongoose.connect(URI);
         const mongooseConnected = mongoose.connection;
-        console.log("test");
         mongooseConnected.once("open", () => {
             console.log("The connection with data base is a sucess");
         });
