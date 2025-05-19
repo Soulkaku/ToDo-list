@@ -14,6 +14,7 @@ export async function DbConnection() {
             console.error("An Error appeared in Data Base connection, " + error);
         });
         
+        return mongooseConnected;
     } catch(error) {
         console.error('Error connecting with Data Base ', error);
         throw error;
