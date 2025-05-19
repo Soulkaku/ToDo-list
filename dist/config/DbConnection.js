@@ -10,6 +10,7 @@ export async function DbConnection() {
         mongooseConnected.on("error", (error) => {
             console.error("An Error appeared in Data Base connection, " + error);
         });
+        return mongooseConnected;
     }
     catch (error) {
         console.error('Error connecting with Data Base ', error);
