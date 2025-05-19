@@ -1,15 +1,16 @@
 import express, { Request, Response } from 'express';
-import path, { dirname } from "path";
+import path from "path";
 import { fileURLToPath } from 'url';
 import exphbs from 'express-handlebars'
 import dotenv from 'dotenv';
-import { DbConnection } from './config/DbConnection';
+import { DbConnection } from './config/DbConnection.js';
+import routes from './routes/indexRoutes.js';
+
 
 dotenv.config();
 
 const app = express();
 const PORT : number = 3000;
-const connectWithDb = DbConnection();
 
 const __filename : string = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "../");
@@ -25,11 +26,11 @@ app.set("views", path.join(`${__dirname}/SRC/Views`));
 app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
 
-//routes(app);
-
-connectWithDb;
 
 
+DbConnection();
+
+app.use('/api', routes);
 app.use(express.urlencoded({ extended: true}));
 
 app.listen(PORT, () => {
