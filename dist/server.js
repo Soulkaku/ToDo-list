@@ -7,6 +7,7 @@ import { DbConnection } from './config/DbConnection.js';
 dotenv.config();
 const app = express();
 const PORT = 3000;
+const connectWithDb = DbConnection();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.join(path.dirname(__filename), "../");
 app.set("view engine", "hbs");
@@ -19,7 +20,7 @@ app.set("views", path.join(`${__dirname}/SRC/Views`));
 app.use(express.static(path.join(`${__dirname}/Public`)));
 app.use(express.json());
 //routes(app);
-DbConnection();
+connectWithDb;
 app.use(express.urlencoded({ extended: true }));
 app.listen(PORT, () => {
     console.log("SERVER IS ON");
