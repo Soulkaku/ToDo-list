@@ -36,7 +36,7 @@ export default class {
         try {
             const taskId = req.params.id;
             await taskService.deleteTask(taskId);
-            res.status(200).json(taskId);
+            res.status(200).json({ message: `task with id: ${taskId} was deleted!` });
         }
         catch (error) {
             res.status(500).json({ message: error });
