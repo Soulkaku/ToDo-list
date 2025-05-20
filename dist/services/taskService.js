@@ -9,7 +9,13 @@ export default new class taskService {
         }));
     }
     async createTask(text) {
-        const newTask = await taskModel.create({ text: text });
-        return newTask;
+        return await taskModel.create({ text: text });
+    }
+    async updateTask(task) {
+        const { _id, text } = task;
+        return await taskModel.findByIdAndUpdate(_id, { text: text }, { new: true });
+    }
+    async deleteTask(_id) {
+        return await taskModel.findByIdAndDelete(_id);
     }
 };
