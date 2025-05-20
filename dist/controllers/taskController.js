@@ -25,8 +25,8 @@ export default class {
     static async updateTask(req, res) {
         try {
             const taskAttr = req.body;
-            const updateTask = await taskService.updateTask(taskAttr);
-            console.log(updateTask);
+            const updateTask = (await taskService.updateTask(taskAttr));
+            return res.status(201).json(updateTask);
         }
         catch (error) {
             res.status(500).json({ message: error });

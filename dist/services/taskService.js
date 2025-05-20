@@ -13,6 +13,9 @@ export default new class taskService {
     }
     async updateTask(task) {
         const { _id, text } = task;
+        if (!Types.ObjectId.isValid(_id)) {
+            throw new Error('Invalid mongo Id');
+        }
         return await taskModel.findByIdAndUpdate(_id, { text: text }, { new: true });
     }
     async deleteTask(_id) {
