@@ -22,7 +22,7 @@ export default new class taskService {
         return await taskModel.findByIdAndUpdate(_id, {text : text}, { new: true});
     }
 
-    async deleteTask(_id : string) : Promise<void> {
-        await taskModel.findByIdAndDelete(_id);
+    async deleteTask(_id : string) : Promise<null> {
+        return await taskModel.findByIdAndDelete(_id);
     }
 }

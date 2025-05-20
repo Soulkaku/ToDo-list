@@ -33,10 +33,24 @@ export default class {
 
     static async updateTask( req: Request, res: Response) {
         try {
+            const taskAttr = req.body as ITask;
+            const updateTask = await taskService.updateTask(taskAttr);
 
-
+            console.log(updateTask);
         } catch (error) {
             res.status(500).json({ message : error});
+        }
+    }
+
+    static async deleteTask( req: Request, res: Response) : Promise<void> {
+        try {
+            const taskId : string = req.params.id;
+
+            await taskService.deleteTask(taskId);
+
+            res.status(200).json(taskId);
+        } catch(error) {
+            res.status(500).json({ message : error });
         }
     }
 
