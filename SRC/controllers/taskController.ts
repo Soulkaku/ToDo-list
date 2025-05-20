@@ -4,28 +4,39 @@ import ITask from "../models/taskInterface.js";
 
 export default class {
 
-    static async getAllTasks(req: Request, res: Response) {
+    static async getAllTasks(req: Request, res: Response): Promise<any> {
         try {
             const tasks = await taskService.getAllTasks();
 
-            res.status(200).json({tasks});
+            return res.status(200).json({tasks});
         } catch (error) {
             res.status(400).json({ message: error});
         }
     }
 
-    static async createTask(req: Request, res: Response) {
+    static async createTask(req: Request, res: Response): Promise<any> {
         try {
-            const { text } = <ITask>req.body;
-            const taskCreated = await taskService.createTask(text);
+            const { text } = req.body as Partial<ITask>;
 
-            if(!taskCreated) {
-                return console.log("this task don't have all attributes necessaries");
+
+            if(!text || typeof text !== 'string' ) {
+                return res.status(400).json({ message: " text field must be a non-empty string"});
             }
 
-            res.status(201).json(taskCreated);
+            const taskCreated = await taskService.createTask(text);
+
+            return res.status(201).json(taskCreated);
         } catch (error) {
-            res.status(500).json({ message: "ERROR IN CREATING A TASK " + error});
+            return res.status(500).json({ message: "ERROR IN CREATING A TASK " + error});
+        }
+    }
+
+    static async updateTask( req: Request, res: Response) {
+        try {
+
+
+        } catch (error) {
+            res.status(500).json({ message : error});
         }
     }
 
