@@ -31,12 +31,12 @@ export default class {
         }
     }
 
-    static async updateTask( req: Request, res: Response) {
+    static async updateTask( req: Request, res: Response): Promise<any> {
         try {
             const taskAttr = req.body as ITask;
-            const updateTask = await taskService.updateTask(taskAttr);
+            const updateTask = (await taskService.updateTask(taskAttr));
 
-            console.log(updateTask);
+            return res.status(201).json(updateTask);
         } catch (error) {
             res.status(500).json({ message : error});
         }
@@ -48,7 +48,7 @@ export default class {
 
             await taskService.deleteTask(taskId);
 
-            res.status(200).json(taskId);
+            res.status(200).json({message: `task with id: ${taskId} was deleted!`});
         } catch(error) {
             res.status(500).json({ message : error });
         }

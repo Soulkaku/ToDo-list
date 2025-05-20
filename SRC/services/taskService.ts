@@ -4,8 +4,8 @@ import ITask from "../models/taskInterface.js";
 
 export default new class taskService {
     
-    async getAllTasks() : Promise<object[]> {
-        const tasks = await taskModel.find().select({ _id : Types.ObjectId, text: String});
+    async getAllTasks() : Promise<ITask[]> {
+        const tasks = await taskModel.find().select({ _id : Types.ObjectId , text : String });
         return tasks.map(attr => ({
             _id : attr._id,
             text: attr.text
@@ -19,10 +19,14 @@ export default new class taskService {
     async updateTask(task : ITask) : Promise<ITask | null> {
         const { _id, text } = task;
 
+        if(!Types.ObjectId.isValid(_id)) {
+            throw new Error('Invalid mongo Id');
+        }
+
         return await taskModel.findByIdAndUpdate(_id, {text : text}, { new: true});
     }
 
-    async deleteTask(_id : string) : Promise<null> {
+    async deleteTask(_id : string) : Promise<ITask | null> {
         return await taskModel.findByIdAndDelete(_id);
     }
 }
